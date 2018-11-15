@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main(void) {
+    int T;
+    scanf("%d",&T);
+    while(T--){
+      long long int sec,count;
+        scanf("%lld",&sec);
+        sec--;
+        count=sec;
+        count=count-sec%26;
+        //printf("%d\n",count);
+        
+        count=count/26;
+        //printf("%d\n",count);
+        
+        long long int score=1;
+        while(count--){
+           // printf("%d\n",score);
+            score=score+score;
+        }
+        //printf("%d",score);
+        sec=sec%26;
+        if(sec>=0 && sec<2){
+            printf("%lld 0 0\n",score);
+        }
+        else if(sec>=2 && sec<10){
+            printf("0 %lld 0\n",score);
+        }else if(sec>=10 && sec<26){
+            printf("0 0 %lld\n",score);
+        }else{
+            printf("0 0 0");
+        }
+    }
+	return 0;
+}
+
