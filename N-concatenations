@@ -1,0 +1,55 @@
+def maxCrossingSum(arr, l, m, h) : 
+      
+    sm = 0; left_sum = -10000000000
+      
+    for i in range(m, l-1, -1) : 
+        sm = sm + arr[i] 
+          
+        if (sm > left_sum) : 
+            left_sum = sm 
+      
+    sm = 0; right_sum = -1000000000
+    for i in range(m + 1, h + 1) : 
+        sm = sm + arr[i] 
+          
+        if (sm > right_sum) : 
+            right_sum = sm 
+      
+   
+    return left_sum + right_sum; 
+  
+def maxSubArraySum(arr, l, h) : 
+      
+    if (l == h) : 
+      return arr[l] 
+  
+    m = (l + h) // 2
+    return max(maxSubArraySum(arr, l, m), 
+               maxSubArraySum(arr, m+1, h), 
+               maxCrossingSum(arr, l, m, h))
+  
+t=input()
+t=t.split(" ")
+n=int(t[0])
+s=int(t[1])
+A=input()
+#A=A.split(" ")
+#A=list(map(int,A))
+change=A
+change=change.split(" ")
+#print(change)
+if change[len(change)-1]=='':
+  #print("Got")
+  del change[len(change)-1]
+  change=" ".join(change)
+  A=change
+#print(len(A))
+B=A
+
+for i in range(1,s):
+  B=B+" "+A
+  
+B=B.split(" ")
+B=list(map(int,B))
+max_sum = maxSubArraySum(B, 0, len(B)-1)
+print(max_sum)
