@@ -1,0 +1,173 @@
+#include <stdio.h>
+void makeChange(long int arr[],long int size,long int A[],long int N,long int pointer,long int fir,long int sec);
+long int findMax(long int arr[],long int size);
+int main(void) {
+    long int N,Q,K;
+	scanf("%ld %ld %ld",&N,&Q,&K);
+	long int A[N];
+	char queries[Q+1];
+    long int arSize[N];
+    long int maxCount[N];
+    long int maxCnt=0;
+	long int max_=-1;
+    long int count=0;
+    long int inc=0;
+    long int pointer=N;
+	for(long int i=0;i<N;i++){
+	    scanf("%ld",&A[i]);
+	    if(A[0]==0 && i==0){
+	        arSize[inc]=0;
+            inc++;
+	    }
+	    if(A[i]==1){
+            count=count+1;
+        }
+        else{
+            if(count!=0)
+            {
+            arSize[inc]=count;
+            inc++;
+            count=0;
+            }
+        }
+	}
+
+	if(count!=0){
+	    arSize[inc]=count;
+	    inc++;
+     }
+	scanf("%s",queries);
+	long int lmax=max_;
+    long int place=0;
+    long int fir=inc-1;
+    long int sec=0;
+    long int loc=0;
+    maxCount[maxCnt]=findMax(arSize,inc);
+	lmax=maxCount[maxCnt];
+	maxCnt++;
+	//printf("%ld",lmax);
+	for(long int i=0;i<inc;i++)
+	{
+	    if(arSize[i]==lmax)
+	    {
+	        //printf("YES");
+	        loc=i;
+	        break;
+	    }
+	}
+	//printf("<%ld",loc);
+	
+	for(long int i=0;i<Q;i++)
+	{
+	    if(queries[i]=='?'){
+	           if(queries[i-1]=='?' && i!=0){
+	               if(lmax>=K)
+	               {
+	                   lmax=K;
+	               }
+	               printf("%ld\n",lmax);
+	           }
+	           else{
+	              // lmax=findMax(arSize,inc,K);
+	              //printf("<%ld ",place);
+	              lmax=maxCount[place];
+	               if(lmax>=K)
+	               {
+	                   lmax=K;
+	               }
+	               printf("%ld\n",lmax);
+	           }
+	    }
+	    else{
+	        //printf("%ld) ",i);
+	        if(pointer==0){
+	            pointer=N-1;
+	        }
+	        else{
+	            pointer--;
+	        }
+	        place=N-pointer;
+	       // printf("<%ld ",place);
+	        
+	        if(maxCnt<=N){
+	            makeChange(arSize,inc,A,N,pointer,fir,sec);
+	           // maxCount[maxCnt]=findMax(arSize,inc,K);
+	            //maxCnt++;
+	            if(A[pointer]==1){
+	                if(arSize[sec]>=lmax)
+	                {
+	                    if(arSize[sec]>=K)
+	                    {
+	                        lmax=K;
+	                    }
+	                    else
+	                    {
+	                        lmax=arSize[sec];
+	                    }
+	                }
+	            }
+	            
+	            if(loc==fir)
+	            {
+	               // printf("Yes");
+	                lmax=findMax(arSize,inc);
+	                for(long int i=0;i<inc;i++)
+	                {
+	                    if(arSize[i]==lmax)
+	                    {
+	                        loc=i;
+	                        break;
+	                    }
+	                }
+	                if(lmax>=K)
+	                {
+	                    lmax=K;
+	                }
+	            }
+	             if(arSize[fir]==0)
+	            {
+	                sec=fir;
+	                fir=fir-1;
+	            }
+	            maxCount[maxCnt]=lmax;
+	            maxCnt++;
+	            //printf("<%ld",fir);
+	           
+	            //for(long int i=0;i<maxCnt;i++)
+	            //{
+	              //  printf("(%ld ",maxCount[i]);
+	            //}
+	            //printf("\n %ld",maxCnt);
+	        }
+	        
+	        
+	    }
+	}
+return 0;
+}
+
+void makeChange(long int arr[],long int size,long int A[],long int N,long int pointer,long int fir,long int sec){
+        long int first=pointer;
+        long int second=pointer+1;
+        if(first==(N-1)){
+            second=0;
+        }
+        if(A[pointer]==1){
+            arr[sec]=arr[sec]+1;
+            arr[fir]=arr[fir]-1;
+        }
+        
+}
+
+
+long int findMax(long int arr[],long int size){
+    //printf("GETTING IN");
+    long int max=-1;
+    for(long int i=0;i<size;i++){
+        if(arr[i]>max){
+            max=arr[i];
+        }
+    }
+    
+    return max;
+}
