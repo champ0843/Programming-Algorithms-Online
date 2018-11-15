@@ -1,0 +1,20 @@
+#include<stdio.h>
+int main()
+{
+  int T;
+  scanf("%d",&T);
+  while(T--){
+    long int num;
+    scanf("%ld",&num);
+    long int temp=num;
+    long int sum=0;
+    while(temp>0)
+     {
+       int n=temp%10;
+       sum=sum+n;
+       temp=temp/10;
+     }
+    printf("%ld\n",sum);
+  }
+	return 0;
+}
