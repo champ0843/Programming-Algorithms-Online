@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main(void) {
+	int result;
+	int T,n,front,back;
+	scanf("%d",&T);
+	while(T--)
+	{
+	    front=0;
+	    back=0;
+	    scanf("%d",&n);
+	    int fing_[n],sheath_[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        scanf("%d",&fing_[i]);
+	    }
+	    for(int i=0;i<n;i++)
+	    {
+	        scanf("%d",&sheath_[i]);
+	    }
+	    for(int i=0,j=n-1;i<n;i++,j--)
+	    {
+	        if(fing_[i]<=sheath_[i])
+	        {
+	            front++;
+	        }
+	        
+	        if(fing_[i]<=sheath_[j])
+	        {
+	            back++;
+	        }
+	        
+	    }
+	    if(front==n && back==n)
+	    {
+	        printf("both\n");
+	    }
+	    else if(front==n)
+	    {
+	        printf("front\n");
+	    }
+	    else if(back==n)
+	    {
+	        printf("back\n");
+	    }
+	    else
+	    {
+	        printf("none\n");
+	    }
+	}
+	
+	return 0;
+}
+
