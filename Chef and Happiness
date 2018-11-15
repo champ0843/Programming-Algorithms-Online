@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main(void) {
+	int T;
+	scanf("%d",&T);
+	while(T--){
+	    long long int N;
+	    scanf("%lld",&N);
+	    long long int numbers[N];
+	    int index[100000]={0};
+	    long long int counter[100000]={0};
+	    //for(int i=0;i<N;i++){
+	      //  index[i]=0;
+	    //}
+	    for(int i=0;i<N;i++){
+	        scanf("%lld",&numbers[i]);
+	        index[numbers[i]-1]=1;
+	        counter[numbers[i]-1]++;
+	    }
+	    
+	   //for (int i=0;i<N;i++){
+	      //  printf("%d ",counter[i]);
+	   // }
+	    //printf("\n");
+	    int count=0;
+	    int uniq=0;
+	    for(int i=0;i<N-1;i++){
+	        count=0;
+	        if(counter[numbers[i]-1]>=2 && index[i]!=0){
+	            for(int k=i+1;k<N;k++){
+	                count=0;
+	                if(numbers[i]==numbers[k]){
+	                    if(index[i]==1)
+	                        count++;
+	                    if(index[k]==1)
+	                        count++;
+	                    if(count==2){
+	                        uniq=1;
+	                        break;
+	                    }
+	                }
+	            }
+	        }
+	        if(index[i]==0)
+	            counter[numbers[i]-1]--;
+	        if(uniq)
+	            break;
+	    }
+	    if(uniq){
+	        printf("Truly Happy\n");
+	    }
+	    else
+	    {
+	        printf("Poor Chef\n");
+	    }
+	    
+	    
+	}
+return 0;
+}
+
+
+
