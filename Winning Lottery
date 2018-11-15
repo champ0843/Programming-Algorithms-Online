@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main(){
+	//Write your code here
+  int S,D;
+  scanf("%d %d",&S,&D);
+  int array[D];
+  int sum=1;
+  int place=0;
+  for(int i=D-1;i>=0;i--){
+    if(sum<S){
+      sum=sum+9;
+      if(i==0)
+        sum--;
+      array[i]=9;
+      place=i;
+    }
+    else{
+      if(i==0)
+      	array[i]=1;
+      else
+        array[i]=0;
+    }
+  }
+  while(sum!=S){
+    if(array[place]!=0){
+      sum--;
+      array[place]--;
+    }
+  else{
+    place++;
+  }
+  }
+  
+  for(int i=0;i<D;i++)
+  {
+    printf("%d",array[i]);
+  }
+}
