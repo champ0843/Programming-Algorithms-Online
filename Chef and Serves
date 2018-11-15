@@ -1,0 +1,23 @@
+# cook your dish here
+t = int(input())
+
+for j in range(t):
+    public = input().split(" ")
+    public = list(map(int,public))
+    player1=public[0];
+    player2=public[1];
+    points=public[2];
+    bool_=True;
+    i=0;
+    while i<int(player1+player2):
+        i=i+points;
+        if i<=int(player1+player2):
+            if bool_:
+              bool_=False;
+            else :
+              bool_=True;
+        
+    if bool_:
+        print("CHEF")
+    else:
+        print("COOK")
