@@ -1,0 +1,35 @@
+t=int(input())
+inConv=[]
+toDisplay={}
+prefix=set()
+for i in range(0,t):
+  name=input()
+  adVal=0
+  present=False
+  #print(name)
+  if name in toDisplay:
+    newNm=name+" "+str(toDisplay[name]+1)
+    #print("YES")
+    inConv.append(newNm)
+    toDisplay[name]=toDisplay[name]+1
+    #toDisplay.append(name)
+  else:
+    toDisplay[name]=1
+    for k in range(0,len(name)):
+      val=name[0:k+1]
+      if val not in prefix:
+        adVal=k
+        present=True
+        inConv.append(name[0:k+1])
+        break
+    for j in range(k,len(name)):
+      prefix.add(name[0:j+1])
+    if not present:
+      inConv.append(name)
+
+for z in range(len(inConv)):
+  print(inConv[z])
+    
+    #print(name[0:j])
+  
+  
