@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(void) {
+    int T;
+    scanf("%d",&T);
+    while(T--)
+    {
+        int N;
+        scanf("%d",&N);
+        char name[N];
+        int sum=0;
+        for(int i=0;i<N;i++)
+        {
+              scanf("%d",&name[i]);
+              sum=sum+name[i];
+        }
+        if(sum%2!=0)
+         printf("YES\n");
+        else
+         printf("NO\n");
+    }
+	return 0;
+}
+
