@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+  int N,M;
+  scanf("%d %d",&N,&M);
+ long int orArr[N][M];
+  for(long int i=0;i<N;i++)
+  {
+    for(long int j=0;j<M;j++)
+    {
+      scanf("%ld",&orArr[i][j]);
+    }
+  }
+  int Q;
+  scanf("%d",&Q);
+  while(Q--)
+  {
+    long int qArr[M];
+    int mat=0;
+    long int toMat[M];
+    for(int i=0;i<M;i++)
+    {
+      scanf("%ld",&qArr[i]);
+      if(qArr[i]!=-1){
+        toMat[mat]=i;
+        mat++;
+      }
+    }
+    int total=0;
+    if(mat!=0)
+    {
+    for(int i=0;i<N;i++)
+    {
+      int allMat=1;
+      for(int j=0;j<mat;j++)
+      {
+        if(qArr[toMat[j]]!=orArr[i][toMat[j]])
+          allMat=0;
+      }
+      if(allMat){
+        total++;
+      }
+    }
+    }
+    else{
+      total=N;
+    }
+    printf("%d\n",total);
+  }
+  //return 0;
+}
